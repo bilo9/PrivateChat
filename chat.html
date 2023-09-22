@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>chat</title>
+
+
+   <h1>
+  ╱|、
+        <br>
+ (˚ˎ 。7
+        <br>
+ |、˜〵
+        <br>
+じしˍ,)ノ
+   </h1>
+
+   <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: purple;
+    text-shadow: 0 0 10px purple;
+    }
+
+    .container {
+      width: 500px;
+      height: 500px; /* Set desired height */
+      max-height: 500px; /* Set maximum height */
+      border-radius: 10px;
+      overflow-y: scroll;
+      padding: 10px;
+      background-color: #f5f5f5;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    input[type="text"],
+    button {
+      padding: 8px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .message {
+      padding: 5px;
+      margin-bottom: 5px;
+      background-color: #e9e9e9;
+      border-radius: 5px;
+    }
+
+     h4 {
+       color: purple;
+    text-shadow: 0 0 10px purple;
+     }
+
+     .button-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+     .button-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .page-button {
+            background-color: purple;
+            color: purple;
+    text-shadow: 0 0 10px purple;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+            font-family: 'Montserrat', sans-serif;
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+</head>
+<body>
+  <div class="container" id="chatContainer"></div>
+  <div class="input-container">
+    <input type="text" id="username" placeholder="Username">
+    <button id="joinButton">Join Chat</button>
+  </div>
+  <div class="input-container">
+    <input type="text" id="message" placeholder="Type your message">
+    <button id="sendButton">Send</button>
+  </div>
+<br>
+</br>
+  <body>
+  </body>
+  <div class="button-container">
+        <a class="page-button" href="sc.html">Secret Feature</a>
+
+  <script>
+ const _0x2648d7=_0xd2ba;function _0xd2ba(_0x264a41,_0x16c967){const _0x455d3b=_0x455d();return _0xd2ba=function(_0xd2ba0f,_0x2cd1ed){_0xd2ba0f=_0xd2ba0f-0xbb;let _0x2d3852=_0x455d3b[_0xd2ba0f];return _0x2d3852;},_0xd2ba(_0x264a41,_0x16c967);}(function(_0x546314,_0x4432b6){const _0x830475=_0xd2ba,_0x45b04b=_0x546314();while(!![]){try{const _0x17a02c=parseInt(_0x830475(0xc8))/0x1+-parseInt(_0x830475(0xbd))/0x2*(parseInt(_0x830475(0xc6))/0x3)+-parseInt(_0x830475(0xc4))/0x4*(-parseInt(_0x830475(0xbe))/0x5)+-parseInt(_0x830475(0xbb))/0x6+parseInt(_0x830475(0xc2))/0x7*(parseInt(_0x830475(0xc1))/0x8)+-parseInt(_0x830475(0xc0))/0x9*(-parseInt(_0x830475(0xc5))/0xa)+-parseInt(_0x830475(0xc3))/0xb*(parseInt(_0x830475(0xbf))/0xc);if(_0x17a02c===_0x4432b6)break;else _0x45b04b['push'](_0x45b04b['shift']());}catch(_0xca7e5b){_0x45b04b['push'](_0x45b04b['shift']());}}}(_0x455d,0x7fe00));const password=prompt('Enter\x20password:');password!==_0x2648d7(0xbc)&&(alert('Incorrect\x20password.\x20Access\x20denied.'),window['location'][_0x2648d7(0xc7)]='dumb.html');function _0x455d(){const _0x2e439d=['1046916mkUfVt','wehatefeds','2188enyGyi','492160TSXsbf','768aoDNrK','243QjhujQ','80fSMTcx','78043KQLFQa','61798sDGXvQ','40QAgvMY','235390RlueuS','2049dbrwBT','href','73653CfonuG'];_0x455d=function(){return _0x2e439d;};return _0x455d();}
+
+    if ("Notification" in window) {
+  if (Notification.permission === "granted") {
+    // Permission already granted, continue with setting up notifications
+  } else if (Notification.permission !== "denied") {
+    // Request permission from the user
+    Notification.requestPermission().then(function (permission) {
+      if (permission === "granted") {
+      
+      } else {
+        console.log("Permission denied for notifications");
+      }
+    });
+  }
+} else {
+  console.log("This browser does not support desktop notifications");
+}
+
+    const savedMessages = localStorage.getItem('chatMessages');
+    const savedUsername = localStorage.getItem('chatUsername');
+    const chatContainer = document.getElementById('chatContainer');
+
+    if (savedMessages) {
+      const messages = JSON.parse(savedMessages);
+      messages.forEach((message) => {
+        appendMessage(message);
+      });
+    }
+
+    if (savedUsername) {
+      document.getElementById('username').value = savedUsername;
+    }
+
+    function updateOnlineCount(count) {
+      const onlineCountElement = document.getElementById('online-count');
+      onlineCountElement.textContent = count + (count === 1 ? ' person online' : ' people online');
+    }
+    
+    const socket = io();
+
+    document.getElementById('joinButton').addEventListener('click', () => {
+      const username = document.getElementById('username').value;
+      socket.emit('join', username);
+      // Store the username in local storage
+      localStorage.setItem('chatUsername', username);
+    });
+
+    document.getElementById('username').addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        const username = document.getElementById('username').value;
+        socket.emit('join', username);
+        // Store the username in local storage
+        localStorage.setItem('chatUsername', username);
+      }
+    });
+
+    socket.on('joinSuccess', () => {
+      document.getElementById('username').disabled = true;
+      document.getElementById('joinButton').disabled = true;
+      appendMessage(`You joined the chat as ${savedUsername}`);
+      document.getElementById('message').disabled = false;
+      document.getElementById('sendButton').disabled = false;
+    });
+
+    socket.on('usernameTaken', (message) => {
+      alert(message);
+    });
+
+    document.getElementById('sendButton').addEventListener('click', () => {
+      sendMessage();
+    });
+
+    document.getElementById('message').addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    socket.on('message', (message) => {
+      appendMessage(message);
+      saveMessages();
+    });
+
+    socket.on('userJoined', (message) => {
+      appendMessage(message);
+      saveMessages();
+    });
+
+    socket.on('userLeft', (message) => {
+      appendMessage(message);
+      saveMessages();
+    });
+
+    function appendMessage(message) {
+      const messageElement = document.createElement('p');
+      messageElement.classList.add('message');
+      messageElement.innerText = message;
+      chatContainer.appendChild(messageElement);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function sendMessage() {
+      const message = document.getElementById('message').value;
+      socket.emit('message', message);
+      document.getElementById('message').value = '';
+    }
+
+    function saveMessages() {
+      const messages = Array.from(chatContainer.getElementsByClassName('message')).map((messageElement) => {
+        return messageElement.innerText;
+      });
+      localStorage.setItem('chatMessages', JSON.stringify(messages));
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elites</title>
+  <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body {
+            text-align: center;
+            padding-top: 50px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            color: #555;
+            background-color: #f8f8f8;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .homepage-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+             color: purple;
+    text-shadow: 0 0 10px purple;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .page-button {
+            background-color: purple;
+            color: purple;
+    text-shadow: 0 0 10px purple;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .page-button:hover {
+            transform: scale(1.05);
+            background-color: #0056b3;
+        }
+      h1 {
+    color: purple;
+    text-shadow: 0 0 10px purple;
+  }
+
+      bilo-text {
+         color: purple;
+    c
+      }
+
+    </style>
+</head>
+<body>
+      <h1>
+  ╱|、
+        <br>
+ (˚ˎ 。7
+        <br>
+ |、˜〵
+        <br>
+じしˍ,)ノ
+   </h1>
+
+
+    <p class="homepage-text">Coded by bilo</p>
+    <p class="homepage-text">I know it's not perfect, but I'll improve it when I have the time.</p>
+  <div id="online-count"><span style="color: green; text-shadow: 0 0 10px purple;">0 people on home page right now</span></div>
+
+
+
+    <h2>Private Live chat for the elites</h2>
+    <div class="button-container">
+        <a class="page-button" href="chat.html">Chat</a>
+    </div>
+
+<div class="button-container">
+        <a class="page-button" href="elites.html">About</a>
+    </div>
+    </div>
+  <script>
+  
+            const socket = io();
+      
+    function updateOnlineCount(count) {
+    const onlineCountElement = document.getElementById('online-count');
+    onlineCountElement.textContent = count + (count === 1 ? ' person online' : ' people online');
+}
+    
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Study Cards</title>
+    <style>
+        body {
+            text-align: center;
+            padding-top: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 18px;
+        }
+
+        .question-card {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-align: left;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .question-card:hover {
+            transform: scale(1.05);
+        }
+
+        .question-card .question {
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .question-card .answer {
+            display: none;
+            font-size: 16px;
+        }
+
+        .question-card.flipped .question {
+            display: none;
+        }
+
+        .question-card.flipped .answer {
+            display: block;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .next-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Question and Answer</h1>
+    <div class="question-card" onclick="flipCard(this)">
+        <p class="question"></p>
+        <p class="answer"></p>
+    </div>
+
+    <div class="button-container">
+        <button class="next-button" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <script>
+        // Define your questions and answers here
+        const questions = [
+            {
+                question: "Qu est ce que tu fais pendant ton temps libre?",
+                answer: "Pendant mon temps libre, je joue au basket."
+            },
+            {
+                question: "Quels sont tes loisirs préférés?",
+                answer: "J'aime le foot parce que c'est très relaxif."
+            },
+            {
+                question: "Qu'est-ce que tu as fait pendant les grandes vacances?",
+                answer: "Pendant mes grandes vacances, j'ai joué au foot."
+            },
+            {
+                question: "Quels sont tes lieux de sortie préférés? Pourquoi?",
+                answer: "Je préfère aller au parc parce que j'aime la nature."
+            }
+            // Add more questions as needed
+        ];
+
+        let currentQuestion = 0;
+
+        // Get the question card element and display the first question
+        function displayQuestion() {
+            const questionCard = document.querySelector(".question-card");
+            questionCard.querySelector(".question").textContent = questions[currentQuestion].question;
+            questionCard.querySelector(".answer").textContent = questions[currentQuestion].answer;
+            questionCard.classList.remove("flipped");
+        }
+
+        // Flip the question card to reveal the answer
+        function flipCard(card) {
+            card.classList.toggle("flipped");
+        }
+
+        // Move to the next question
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion >= questions.length) {
+                document.querySelector(".question-card").style.display = "none";
+                document.querySelector(".button-container").style.display = "none";
+                return;
+            }
+            displayQuestion();
+        }
+
+        // Display the first question when the page loads
+        displayQuestion();
+    </script>
+</body>
+</html>
